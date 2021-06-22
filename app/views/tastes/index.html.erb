@@ -1,0 +1,60 @@
+<div class="container">
+  <%= form_tag import_tastes_path, multipart: true do %>
+    <div class="row border border-dark py-3">
+      <div class="col-6 w-100"> 
+        <%= file_field_tag :file , id: 'elmFile', onchange: 'selectFile()',class:"w-100"%>
+      </div>
+      <div class="col-6 w-100">
+        <%= submit_tag "Import", class:"w-100 bg-info", id: 'btnImport', disabled: true  %>
+      </div>
+    </div>
+  <% end %>
+  <div class="row border border-dark py-3">
+    <div class="col-6 w-100">
+      <%= @tastes.count %>items
+    </div>
+    <div class="col-6 w-100">
+    <% if @tastes.count > 0 %>
+      <%= button_to "全て削除", destroy_all_tastes_path, method: :delete, data: { confirm: "削除してよろしいですか？", commit: "削除する", cancel: "やめる" },class:"w-100 bg-danger text-white" %>
+    <% end %>
+    </div>
+  </div>
+</div>
+<div class="container bg-secondary">
+  <div class="row w-100 my-3">
+    <div class="col-12 w-100 text-white">
+      Price_SQL_CODE
+    </div>
+  </div>
+</div>
+<div class="container mb-5" style="font-size:9px">
+  <div class="row">
+    <% if @tastes.count > 0 %>
+      <div class="col-12">truncate table tastes;</div>
+    <% end %>
+  </div>
+  <div class="row">
+    <% @tastes.each do |taste| %>
+      <div class="col-12">
+      insert into koike_sim_db.tastes(name,disp_value,image,image2,image3,`createdAt`,`updatedAt`) values (
+      <% if taste.name.present? %>"<%= taste.name %>",<% else %>null,<% end %>
+      <% if taste.disp_name.present? %>"<%= taste.disp_name %>",<%else%>null,<% end %>
+      <% if taste.image.present? %>"<%= taste.image %>",<% else %>null,<% end %>
+      <% if taste.image2.present? %>"<%= taste.image2 %>",<% else %>null,<% end %>
+      <% if taste.image3.present? %>"<%= taste.image3 %>",<% else %>null,<% end %>
+      now(),now());
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  function selectFile() {
+    if (document.getElementById("elmFile").value === ""){
+        document.getElementById("btnImport").disabled = true;
+    }
+    else {
+        document.getElementById("btnImport").disabled = false;
+    }
+}
+</script>
