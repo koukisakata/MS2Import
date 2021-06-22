@@ -2,7 +2,7 @@
   <%= form_tag import_laces_path, multipart: true do %>
     <div class="row border border-dark py-3">
       <div class="col-6 w-100"> 
-        <%= file_field_tag :file,class:"w-100" %>
+        <%= file_field_tag :file , id: 'elmFile', onchange: 'selectFile()',class:"w-100"%>
       </div>
       <div class="col-6 w-100">
         <%= submit_tag "Import", class:"w-100 bg-info", id: 'btnImport', disabled: true  %>
