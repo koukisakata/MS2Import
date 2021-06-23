@@ -11,12 +11,19 @@
   <% end %>
   <div class="row border border-dark py-3">
     <div class="col-6 w-100">
-      <%= @wallpapers.count %>items
+      <%= @wallpaper.count %>items
     </div>
     <div class="col-6 w-100">
-    <% if @wallpapers.count > 0 %>
+    <% if @wallpaper.count > 0 %>
       <%= button_to "全て削除", destroy_all_wallpapers_path, method: :delete, data: { confirm: "削除してよろしいですか？", commit: "削除する", cancel: "やめる" },class:"w-100 bg-danger text-white" %>
     <% end %>
+    </div>
+  </div>
+</div>
+<div class="container my-3">
+  <div class="row">
+    <div class="col-12 text-center">
+      <%= paginate @wallpapers %>
     </div>
   </div>
 </div>
@@ -39,7 +46,13 @@
     <% end %>
   </div>
 </div>
-
+<div class="container my-3">
+  <div class="row">
+    <div class="col-12 text-center">
+      <%= paginate @wallpapers %>
+    </div>
+  </div>
+</div>
 <script>
   function selectFile() {
     if (document.getElementById("elmFile").value === ""){

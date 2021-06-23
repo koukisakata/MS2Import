@@ -1,6 +1,7 @@
 class LacesController < ApplicationController
   def index
-    @laces = Lace.all
+    @lace = Lace.all
+    @laces = Lace.all.page(params[:page]).per(200)
   end
   def destroy
     Lace.destroy_all

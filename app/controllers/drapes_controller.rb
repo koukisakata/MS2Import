@@ -1,6 +1,7 @@
 class DrapesController < ApplicationController
   def index
-    @drapes = Drape.all
+    @drape = Drape.all
+    @drapes = Drape.all.page(params[:page]).per(200)
   end
   def destroy
     Drape.destroy_all

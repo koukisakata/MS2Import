@@ -1,6 +1,7 @@
 class WallpapersController < ApplicationController
   def index
-    @wallpapers = Wallpaper.all
+    @wallpaper = Wallpaper.all
+    @wallpapers = Wallpaper.all.page(params[:page]).per(200)
   end
   def destroy
     Wallpaper.destroy_all

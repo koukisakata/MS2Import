@@ -1,6 +1,7 @@
 class RomanShadesController < ApplicationController
   def index
-    @roman_shades = RomanShade.all
+    @roman_shade = RomanShade.all
+    @roman_shades = RomanShade.all.page(params[:page]).per(200)
   end
   def destroy
     RomanShade.destroy_all

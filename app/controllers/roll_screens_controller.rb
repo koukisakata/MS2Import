@@ -1,6 +1,7 @@
 class RollScreensController < ApplicationController
   def index
-    @roll_screens = RollScreen.all
+    @roll_screen = RollScreen.all
+    @roll_screens = RollScreen.all.page(params[:page]).per(200)
   end
   def destroy
     RollScreen.destroy_all
