@@ -37,7 +37,9 @@
 <div class="container mb-5" style="font-size:9px">
   <div class="row">
   <% if @wallpapers.count > 0 %>
-    <div class="col-12">truncate table wallpapers;</div>
+    <% if @pageNo == 1 %>
+      <div class="col-12 text-danger">truncate table wallpapers;</div>
+    <% end %>
   <% end %>
   </div>
   <div class="row">
