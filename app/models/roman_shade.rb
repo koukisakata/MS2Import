@@ -12,6 +12,6 @@ class RomanShade < ApplicationRecord
 
   # 更新を許可するカラムを定義
   def self.updatable_attributes
-    ["code", "function", "price", "brand", "taste"]
+    ["code", "functions", "price", "brand", "taste"]
   end
 end
