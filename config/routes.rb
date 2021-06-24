@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  root to: 'home#index'
+  get 'home/index'
+  devise_for :users
   get 'brands/index'
   get 'functions/index'
   get 'tastes/index'
@@ -7,8 +10,6 @@ Rails.application.routes.draw do
   get 'roman_shades/index'
   get 'laces/index'
   get 'drapes/index'
-  root to: 'home#index'
-  get 'home/index'
   resources :wallpapers do
     collection { post :import }
   end
@@ -80,5 +81,16 @@ Rails.application.routes.draw do
     collection do
       delete 'destroy_all'
     end
+  end
+
+  def after_sign_in_path_for(resource)
+    home_index_path
+  end
+  # ログアウト後の遷移先
+  def after_sign_out_path_for(resource)
+    new_user_session_path
+  end
+  devise_scope :user do
+    get '/users/sign_out' => 'devise/sessions#destroy'
   end
 end

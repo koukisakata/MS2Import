@@ -3,6 +3,13 @@
     <%= link_to "SQL_Service", root_path,class:'col-12 w-100 text-white' %>
   </div>
 </div>
+<% if user_signed_in? %>
+<div class="container">
+  <div class="row">
+    <%= link_to 'LOGOUT', destroy_user_session_path, method: :delete,class:"text-right col-12" %>
+  </div>
+</div>
+<% end %>
 <div class="row justify-content-around border border-dark bg-light py-2">
   <%= link_to "Drapes", drapes_path,class:'col-2 w-100 text-secondary text-center' %>
   <%= link_to "Laces", laces_path,class:'col-2 w-100 text-secondary text-center' %>
